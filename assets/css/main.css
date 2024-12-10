@@ -341,6 +341,32 @@ header>p {
 	width: 64em;
 }
 
+.repo-list {
+	list-style: none;
+	padding: 0;
+}
+
+.repo-item {
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: #1e1e1e;
+}
+
+.repo-item h2 {
+	margin: 0 0 5px 0;
+}
+
+.repo-item a {
+	text-decoration: none;
+	color: #6b7770;
+}
+
+.repo-item a:hover {
+	text-decoration: underline;
+}
+
 @media screen and (max-width: 1680px) {
 
 	.container {

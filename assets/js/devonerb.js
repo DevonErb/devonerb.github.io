@@ -1,5 +1,10 @@
 (function($) {
     $(document).ready(function () {
+        //projects page interact with github 
+        if (window.location.pathname.endsWith('projects.html')) {
+            github_projects_api();
+        }
+
         $('.contact-form').on('submit', function (event) {
             event.preventDefault(); // Prevent the default form submission
 
@@ -28,4 +33,25 @@
             });
         });
     });
+
+    //generlization
+    function github_projects_api(){
+        const username = document.getElementById("github").href.split("https://github.com/")[1]; // Replace with your GitHub username
+        const apiUrl = `https://api.github.com/users/${username}/repos`;
+
+        $.get(apiUrl, function (data) {
+            data.forEach(repo => {
+                const repoItem = `
+                    <li class="repo-item">
+                        <h2><a href="${repo.html_url}" target="_blank">${repo.name}</a></h2>
+                        <p>${repo.description || 'No description available.'}</p>
+                    </li>
+                `;
+                $('.repo-list').append(repoItem);
+            });
+        }).fail(function () {
+            alert('Failed to fetch GitHub repositories.');
+        });
+    }
+
 })(jQuery);
